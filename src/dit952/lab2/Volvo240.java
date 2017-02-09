@@ -16,12 +16,6 @@ public class Volvo240 extends Car{
         enginePower = 100;
         modelName = "Volvo240";
         stopEngine();
-        try {
-        vehicleImage = ImageIO.read(new File("src\\pics\\Volvo240.jpg"));
-        } catch (IOException ex)
-        {
-            ex.printStackTrace();
-        }
     }
 
 /** returns the resulting speedfactor

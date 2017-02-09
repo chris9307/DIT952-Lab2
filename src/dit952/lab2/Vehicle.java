@@ -12,7 +12,6 @@ import java.awt.image.BufferedImage;
 abstract public class Vehicle {
      protected int x = 0, y = 0;
      protected double enginePower; // Engine power of the car
-    protected BufferedImage vehicleImage;
      
      protected double currentSpeed; // The current speed of the car
      public enum Direction{UP,RIGHT,DOWN,LEFT};
@@ -148,10 +147,6 @@ abstract public class Vehicle {
     
     public void setYPos(int y){
         this.y=y;
-    }
-
-    public BufferedImage getVehicleImage() {
-        return vehicleImage;
     }
 
     public Point getPos() {
