@@ -11,7 +11,7 @@ import java.awt.Color;
 /**
  *Car is intended to be used as a base for implementing different car models.
  */
-public abstract class Car extends Vehicle implements Movable {
+public abstract class Car extends Vehicle {
     
     
    

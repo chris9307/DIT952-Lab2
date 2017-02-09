@@ -30,13 +30,16 @@ public class CarController {
         // Instance of this class
         CarController cc = new CarController();
 
-        cc.cars.add(new Volvo240(1,1));
+        cc.cars.add(new Volvo240(40,40));
+
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
 
+        //cc.frame.drawPanel.addVehicle(new Volvo240(40,40));
         // Start the timer
         cc.timer.start();
+
     }
 
     /* Each step the TimerListener moves all the cars in the list and tells the
@@ -48,9 +51,17 @@ public class CarController {
                 car.move();
                 int x = (int) Math.round(car.getXPos());
                 int y = (int) Math.round(car.getYPos());
-                frame.drawPanel.moveit(x, y);
+                frame.drawPanel.moveit(x,y);
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
+                /*
+                if(checkcolision(car)) {
+                    car.stopEngine();
+                    car.startEngine();
+                    car.turnLeft();
+                    car.turnLeft();
+                }
+                */
             }
         }
     }
@@ -62,5 +73,20 @@ public class CarController {
                 ) {
             car.gas(gas);
         }
+    }
+
+    void brake(int amount) {
+        double brake = ((double) amount) / 100;
+        for (Car car : cars) {
+            car.brake(brake);
+        }
+    }
+
+    boolean checkcolision(Car car) {
+        //System.out.println(frame.getSize());
+        //System.out.println(frame.drawPanel.volvoImage.getWidth());
+        boolean collisionX = -car.currentSpeed + car.getXPos() <= 0 || car.currentSpeed + car.getXPos() > frame.drawPanel.getWidth();
+        boolean collisionY = -car.currentSpeed + car.getYPos() < 0 || car.currentSpeed + car.getYPos() > 700;
+        return collisionX || collisionY;
     }
 }
